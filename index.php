@@ -36,11 +36,12 @@ class pdfCreate
 
         $snappy->setOption('use-xserver', true);
 
+        $snappy->getOptions();
+        $output = $snappy->getOutput($url);
+
         header('Content-Type: application/pdf');
         header('Content-Disposition: inline; filename="' . $title . '.pdf"');
-
-        $snappy->getOptions();
-        echo $snappy->getOutput($url);
+        echo $output;
     }
 
     /**
@@ -70,7 +71,7 @@ class pdfCreate
             }
         }
 
-        throw new Exception("Requested host ".$requestedHost." is not allowed", 1587321441);
+        throw new Exception("Requested host '".$requestedHost."' is not allowed", 1587321441);
     }
 
     /**
@@ -85,7 +86,7 @@ class pdfCreate
             return $_POST[$name];
         }
         if (isset($_GET[$name])) {
-            return filter_var($_GET[$name], FILTER_SANITIZE_STRING);
+            return filter_var(urldecode($_GET[$name]), FILTER_SANITIZE_STRING);
         }
         return $default;
     }

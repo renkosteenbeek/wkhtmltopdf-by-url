@@ -10,7 +10,13 @@ A PDF document will be generated based on the provided URL. The URL can be provi
 ## Arguments
 Any wkhtmltopdf option can be set using environment variables.
 
-Additional arguments:
+Additional enviroment:
+* defaultTitle - default file name
+* defaultFooter - default footer template. 
+* allowedHosts - comma seperated list of allowed hostnames. Use * to allow any.
+
+GET or POST arguments
+* url - the Url to parse (should be urlencoded)
 * title - the returned file name
 * footer - the name of the footer to include. The footer must be present in the root of the container
 

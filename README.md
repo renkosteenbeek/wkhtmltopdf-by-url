@@ -7,10 +7,10 @@ WKhtmltopdf is a greate PDF generator, using Qt Webkit as rendering engine, prov
 ## Principles
 A PDF document will be generated based on the provided URL. The URL can be provided by POST or GET, using the argument 'url'. Hostnames are be filtered using the enviroment variable allowdHosts, so the PDF generator will block access to any other hostname. Use * to allow any hostname.
 
-## Arguments
+## Arguments and enviroment vars
 Any wkhtmltopdf option can be set using environment variables.
 
-Additional enviroment:
+Additional enviroment vars:
 * defaultTitle - default file name
 * defaultFooter - default footer template. 
 * allowedHosts - comma seperated list of allowed hostnames. Use * to allow any.

@@ -21,17 +21,15 @@ class pdfCreate
             }
         }
 
-        if (!isset($_POST['url'])) {
+        if (empty($this->getVar('url'))) {
             throw new Exception('No URL is provided', 1587381858);
         }
-        $url = $_POST['url'];
-        $url = filter_var($url, FILTER_SANITIZE_STRING);
 
+        $url = $this->getVar('url');
         $this->validateHost($url);
 
-        $title = (isset($_POST['title']) ? $_POST['title'] : getenv('defaultTitle'));
-        $title = filter_var($title, FILTER_SANITIZE_STRING);
-        $footer = $_POST['footer'];
+        $title = $this->getVar('title', getenv('defaultTitle'));
+        $footer = $this->getVar('title', getenv('defaultFooter'));
         if ($footer) {
             $snappy->setOption('footer-html', $footer);
         }
@@ -73,6 +71,23 @@ class pdfCreate
         }
 
         throw new Exception("Requested host is not allowed", 1587321441);
+    }
+
+    /**
+     * Get POST or GET var
+     * @param string $name
+     * @param string $default
+     * @return string
+     */
+    private function getVar($name, $default='')
+    {
+        if (isset($_POST[$name])) {
+            return $_POST[$name];
+        }
+        if (isset($_GET[$name])) {
+            return filter_var($_GET[$name], FILTER_SANITIZE_STRING);
+        }
+        return $default;
     }
 }
 

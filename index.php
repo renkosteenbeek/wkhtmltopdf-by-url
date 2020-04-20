@@ -29,7 +29,7 @@ class pdfCreate
         $this->validateHost($url);
 
         $title = $this->getVar('title', getenv('defaultTitle'));
-        $footer = $this->getVar('title', getenv('defaultFooter'));
+        $footer = $this->getVar('footer', getenv('defaultFooter'));
         if ($footer) {
             $snappy->setOption('footer-html', $footer);
         }

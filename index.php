@@ -70,7 +70,7 @@ class pdfCreate
             }
         }
 
-        throw new Exception("Requested host is not allowed", 1587321441);
+        throw new Exception("Requested host ".$requestedHost." is not allowed", 1587321441);
     }
 
     /**

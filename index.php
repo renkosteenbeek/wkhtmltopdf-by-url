@@ -45,7 +45,7 @@ class pdfCreate
     }
 
     /**
-     * Validate weather the requested host is allowed
+     * Validate whether requested host is allowed
      * @param $url
      * @throws Exception
      */

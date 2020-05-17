@@ -12,7 +12,7 @@ class pdfCreate
     public function getPdf()
     {
         // init snappy
-        $snappy = new Pdf('xvfb-run -a -s "-screen 0 640x480x16" wkhtmltopdf');
+        $snappy = new Pdf('DISPLAY=:0 wkhtmltopdf');
 
         // Get settings from environment
         foreach ($snappy->getOptions() as $option => $value) {

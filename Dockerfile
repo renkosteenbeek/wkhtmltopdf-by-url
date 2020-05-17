@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 MAINTAINER Renko Steenbeek <rsteenbeek@gentle-innovations.nl>
 
 RUN apt-get update; \
@@ -21,10 +21,12 @@ ENV TERM xterm
 ADD composer.json /composer.json
 RUN composer install
 
+# Allow all hosts by default
+ENV allowedHosts=*
+
 # webservice
 ADD index.php /index.php
+ADD entrypoint.sh /entrypoint.sh
 EXPOSE 80
 
-# to make php -S handle sigterm
-ENTRYPOINT ["php"]
-CMD ["-S", "0.0.0.0:80"]
+ENTRYPOINT ["/entrypoint.sh"]

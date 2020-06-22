@@ -20,6 +20,11 @@ GET or POST arguments
 * title - the returned file name
 * footer - the name of the footer to include. The footer must be present in the root of the container
 
+Templates
+* Different options can be set using templates.
+* Configure the templates using templates.json.
+* Provide the name of the required template using the "template" Get or Post argument.
+
 ## Docker-compose example
 ```version: "3.2"
 services:

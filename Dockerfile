@@ -26,6 +26,7 @@ ENV allowedHosts=*
 
 # webservice
 ADD index.php /index.php
+ADD templates.json /templates.json
 ADD entrypoint.sh /entrypoint.sh
 EXPOSE 80
 

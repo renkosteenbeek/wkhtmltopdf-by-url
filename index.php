@@ -34,6 +34,10 @@ class pdfCreate
             $snappy->setOption('footer-html', $footer);
         }
 
+        if ($this->getVar('template')) {
+            $this->loadFromTemplate($this->getVar('template'), $snappy);
+        }
+
         $snappy->setOption('use-xserver', true);
 
         $snappy->getOptions();
@@ -72,6 +76,31 @@ class pdfCreate
         }
 
         throw new Exception("Requested host '".$requestedHost."' is not allowed", 1587321441);
+    }
+
+    /**
+     * Load settings bases of template
+     * @param $name
+     * @param Pdf $snappy
+     * @throws Exception
+     */
+    private function loadFromTemplate($name, $snappy)
+    {
+        if (!file_exists('/templates.json')) {
+            throw new Exception("No template config does exists", 1592863261);
+        }
+        try {
+            $config = json_decode(file_get_contents('/templates.json'));
+        } catch(Exception $e) {
+            return;
+        }
+        if (!$config->$name) {
+            throw new Exception("The requested template isn't available.", 1592863342);
+        }
+
+        foreach ($config->$name as $option) {
+            $snappy->setOption($option->option, $option->value);
+        }
     }
 
     /**

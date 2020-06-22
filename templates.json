@@ -1,0 +1,38 @@
+{
+  "documentType1": [
+    {
+      "option": "margin-top",
+      "value": 42
+    }
+  ],
+  "documentType2": [
+    {
+      "option": "margin-top",
+      "value": 15
+    },
+    {
+      "option": "margin-left",
+      "value": 13
+    },
+    {
+      "option": "margin-right",
+      "value": 13
+    },
+    {
+      "option": "margin-bottom",
+      "value": 20
+    },
+    {
+      "option": "footer-font-name",
+      "value": "Calibri"
+    },
+    {
+      "option": "footer-font-size",
+      "value": 9
+    },
+    {
+      "option": "footer-html",
+      "value": "4_footer.html"
+    }
+  ]
+}

@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
 
 # Download and install wkhtmltopdf and dependencies
-RUN apt-get update && apt-get upgrade -y && apt-get install -y build-essential xorg libssl-dev libxrender-dev wget gdebi xvfb ttf-mscorefonts-installer php composer bash;
+RUN apt-get update && apt-get upgrade -y && apt-get install -y wget gdebi xvfb ttf-mscorefonts-installer php composer;
 
 # Get Wkhtmltopdf
 RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz;

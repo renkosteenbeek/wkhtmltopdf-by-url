@@ -1,4 +1,10 @@
 {
+  "default": [
+    {
+      "option": "margin-top",
+      "value": 60
+    }
+  ],
   "documentType1": [
     {
       "option": "margin-top",
@@ -32,7 +38,7 @@
     },
     {
       "option": "footer-html",
-      "value": "4_footer.html"
+      "value": "/footers/4_footer.html"
     }
   ]
 }

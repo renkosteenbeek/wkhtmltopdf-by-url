@@ -32,7 +32,7 @@
     },
     {
       "option": "footer-html",
-      "value": "4_footer.html"
+      "value": "/footers/4_footer.html"
     }
   ]
 }

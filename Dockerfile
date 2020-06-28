@@ -10,13 +10,9 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula selec
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget gdebi xvfb ttf-mscorefonts-installer php composer;
 
 # Get Wkhtmltopdf
-RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkhtmltox-0.12.4_linux-generic-amd64.tar.xz;
-RUN tar xf wkhtmltox-0.12.4_linux-generic-amd64.tar.xz; \
-    cd wkhtmltox; \
-    mv bin/* /usr/local/bin; \
-    mv include/* /usr/local/inlcude; \
-    mv lib/* /usr/local/lib; \
-    mv share/* /usr/local/share;
+RUN wget https://downloads.wkhtmltopdf.org/obsolete/linux/wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2;
+RUN tar -xjf  wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2; \
+    mv wkhtmltopdf-amd64 /usr/local/bin/wkhtmltopdf;
 
 #for nano working
 ENV TERM xterm

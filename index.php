@@ -31,7 +31,7 @@ class pdfCreate
         $title = $this->getVar('title', getenv('defaultTitle'));
         $footer = $this->getVar('footer', getenv('defaultFooter'));
         if ($footer) {
-            $snappy->setOption('footer-html', $footer);
+            $snappy->setOption('footer-html', '/footers/' . $footer);
         }
 
         if ($this->getVar('template')) {
@@ -75,7 +75,7 @@ class pdfCreate
             }
         }
 
-        throw new Exception("Requested host '".$requestedHost."' is not allowed", 1587321441);
+        throw new Exception("Requested host '" . $requestedHost . "' is not allowed", 1587321441);
     }
 
     /**
@@ -91,8 +91,11 @@ class pdfCreate
         }
         try {
             $config = json_decode(file_get_contents('/templates.json'));
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return;
+        }
+        if (!$config->$name && $config->default) {
+            $name = 'default';
         }
         if (!$config->$name) {
             throw new Exception("The requested template isn't available.", 1592863342);
@@ -109,7 +112,7 @@ class pdfCreate
      * @param string $default
      * @return string
      */
-    private function getVar($name, $default='')
+    private function getVar($name, $default = '')
     {
         if (isset($_POST[$name])) {
             return $_POST[$name];

@@ -12,7 +12,8 @@ RUN apt-get update && apt-get upgrade -y && apt-get install -y wget gdebi xvfb t
 # Get Wkhtmltopdf
 RUN wget https://downloads.wkhtmltopdf.org/obsolete/linux/wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2;
 RUN tar -xjf  wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2; \
-    mv wkhtmltopdf-amd64 /usr/local/bin/wkhtmltopdf;
+    mv wkhtmltopdf-amd64 /usr/local/bin/wkhtmltopdf; \
+    rm -f wkhtmltopdf-0.11.0_rc1-static-amd64.tar.bz2;
 
 #for nano working
 ENV TERM xterm
@@ -31,3 +32,6 @@ ADD entrypoint.sh /entrypoint.sh
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+COPY healthcheck.sh /healthcheck.sh
+HEALTHCHECK --interval=10s CMD /healthcheck.sh

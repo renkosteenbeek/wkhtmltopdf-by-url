@@ -30,3 +30,6 @@ ADD entrypoint.sh /entrypoint.sh
 EXPOSE 80
 
 ENTRYPOINT ["/entrypoint.sh"]
+
+COPY healthcheck.sh /healthcheck.sh
+HEALTHCHECK --interval=10s CMD /healthcheck.sh

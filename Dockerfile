@@ -1,5 +1,4 @@
-ARG ARCH=
-FROM ${ARCH}ubuntu:20.04
+FROM ubuntu:20.04
 MAINTAINER Renko Steenbeek <rsteenbeek@gentle-innovations.nl>
 
 # Prevent question during installations
@@ -11,13 +10,10 @@ RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula selec
 RUN apt-get update && apt-get upgrade -y && apt-get install -y wget gdebi xvfb ttf-mscorefonts-installer php composer
 
 # Get Wkhtmltopdf
-RUN if [ "$ENV" = "arm" ] ; then \
-        wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_arm64.deb && \
-        gdebi --n wkhtmltox_0.12.6-1.focal_arm64.deb; \
-    else \
-        wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb && \
-        gdebi --n wkhtmltox_0.12.6-1.focal_amd64.deb; \
-    fi
+ARG TARGETARCH
+RUN echo "Preparing wkhtmltopdf for architecture: ${TARGETARCH}" && \
+    wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_${TARGETARCH}.deb && \
+    gdebi --n wkhtmltox_0.12.6-1.focal_${TARGETARCH}.deb
 
 #for nano working
 ENV TERM xterm

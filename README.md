@@ -49,4 +49,8 @@ services:
 ## Example usage
 http://localhost:8008?url=https%3A%2F%2Fdewereldopjebord.nl%2Fgroente-biryani%2F%2Fprint?title=groente-biryani
 
+# Build & push
+`docker buildx build --push --tag renkosteenbeek/wkhtmltopdf-by-url:0.12.6 --platform linux/arm64/v7,linux/arm64/v8,linux/amd64 .`
 
+# Build only
+`docker buildx build --tag renkosteenbeek/wkhtmltopdf-by-url:0.12.6 --platform linux/arm64/v7,linux/arm64/v8,linux/amd64 .`
